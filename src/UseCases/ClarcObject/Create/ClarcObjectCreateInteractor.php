@@ -6,12 +6,12 @@ namespace nrslib\ClarcLaravelPlugin\UseCases\ClarcObject\Create;
 
 use nrslib\Cfg\ClassRenderer;
 use nrslib\Cfg\InterfaceRenderer;
-use nrslib\Clarc\UseCases\Commons\Ds\SourceFileData;
 use nrslib\Clarc\UseCases\UseCase\Create\UseCaseCreateInputData;
 use nrslib\Clarc\UseCases\UseCase\Create\UseCaseCreateInteractor;
 use nrslib\Clarc\UseCases\UseCase\Create\UseCaseCreateNamespaceData;
 use nrslib\Clarc\UseCases\UseCase\Create\UseCaseCreateOutputData;
 use nrslib\Clarc\UseCases\UseCase\Create\UseCaseSchema;
+use nrslib\ClarcLaravelPlugin\Config\LaravelConfig;
 use nrslib\ClarcLaravelPlugin\LaravelSourceFileBuilder\LaravelControllerSourceFileBuilder;
 use nrslib\ClarcLaravelPlugin\LaravelSourceFileBuilder\LaravelPresenterSourceFileBuilder;
 
@@ -47,13 +47,13 @@ class ClarcObjectCreateInteractor implements ClarcObjectCreateInputPort
 
     public function handle(ClarcObjectCreateInputData $inputData)
     {
-        $inputPortNameSpace = 'packages\\InputPorts\\' . $inputData->controllerName;
+        $inputPortNameSpace = LaravelConfig::INPUT_PORT_NAMESPACE . $inputData->controllerName;
         $namespaces = new UseCaseCreateNamespaceData(
-            'App\\Http\\Controllers\\' . $inputData->controllerName,
+            LaravelConfig::CONTROLLER_NAMESPACE . $inputData->controllerName,
             $inputPortNameSpace,
-            'packages\\Interactors\\' . $inputData->controllerName,
-            'packages\\OutputPorts\\' . $inputData->controllerName,
-            'packages\\Presenters\\' . $inputData->controllerName
+            LaravelConfig::INTERACTOR_NAMESPACE . $inputData->controllerName,
+            LaravelConfig::OUTPUT_PORT_NAMESPACE . $inputData->controllerName,
+            LaravelConfig::PRESENTER_NAMESPACE . $inputData->controllerName
         );
         $usecaseCreateOutputData = $this->executeClarcCore($inputData, $namespaces);
 
@@ -94,44 +94,4 @@ class ClarcObjectCreateInteractor implements ClarcObjectCreateInputPort
 
         return $usecaseCreateDataCollector->getRecentOutputData();
     }
-//
-//    /**
-//     * @param ClarcObjectCreateInputData $inputData
-//     * @param UseCaseCreateNamespaceData $namespaces
-//     * @param UseCaseCreateOutputData $usecaseCreateOutputData
-//     * @param string $inputPortNameSpace
-//     * @return SourceFileData
-//     */
-//    public function createControllerSourceFile(ClarcObjectCreateInputData $inputData, UseCaseCreateNamespaceData $namespaces, UseCaseCreateOutputData $usecaseCreateOutputData, string $inputPortNameSpace): SourceFileData
-//    {
-//        $controllerBuilder = new LaravelControllerSourceFileBuilder($this->classRenderer);
-//
-//        $controllerSourceFile = $controllerBuilder->build(
-//            $inputData->controllerName, $inputData->actionName,
-//            $namespaces->controllerNamespace,
-//            $usecaseCreateOutputData->getInputPortSourceFile()->getClassName(),
-//            $inputPortNameSpace);
-//
-//        return $controllerSourceFile;
-//    }
-//
-//    /**
-//     * @param ClarcObjectCreateInputData $inputData
-//     * @param UseCaseCreateNamespaceData $namespaces
-//     * @param UseCaseCreateOutputData $usecaseCreateOutputData
-//     * @param string $inputPortNameSpace
-//     * @return SourceFileData
-//     */
-//    public function createPresenterSourceFile(ClarcObjectCreateInputData $inputData, UseCaseCreateNamespaceData $namespaces, UseCaseCreateOutputData $usecaseCreateOutputData, string $outputPortNameSpace): SourceFileData
-//    {
-//        $presenterSourceFileBuilder = new LaravelPresenterSourceFileBuilder($this->classRenderer);
-//
-//        $controllerSourceFile = $presenterSourceFileBuilder->build(
-//            $inputData->controllerName, $inputData->actionName,
-//            $namespaces->controllerNamespace,
-//            $usecaseCreateOutputData->getInputPortSourceFile()->getClassName(),
-//            $outputPortNameSpace);
-//
-//        return $controllerSourceFile;
-//    }
 }

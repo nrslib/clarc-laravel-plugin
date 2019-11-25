@@ -11,6 +11,7 @@
     ],
     "require": {
         "php": "^7.2",
+        "nrslib/cfg": "dev-master",
         "nrslib/clarc-php-core": "dev-master",
         "illuminate/support": "^6.2",
         "laravel/framework": "^6.2"

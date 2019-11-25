@@ -61,7 +61,7 @@ class ClarcObjectCreateInteractorTest extends \PHPUnit\Framework\TestCase
 
         $usecaseName = $controllerName . $actionName;
 
-        file_put_contents($controllerPath . '\\' . $usecaseName . 'Controller.php', $outputData->getControllerSourceFile()->getContents());
+        file_put_contents($controllerPath . '\\' . $controllerName . 'Controller.php', $outputData->getControllerSourceFile()->getContents());
         file_put_contents($inputPortPath . '\\' . $usecaseName . 'InputPortInterface.php', $outputData->getInputPortSourceFile()->getContents());
         file_put_contents($inputPortPath . '\\' . $usecaseName . 'InputData.php', $outputData->getInputDataSourceFile()->getContents());
         file_put_contents($interactorPath . '\\' . $usecaseName . 'Interactor.php', $outputData->getInteractorSourceFile()->getContents());
@@ -69,12 +69,12 @@ class ClarcObjectCreateInteractorTest extends \PHPUnit\Framework\TestCase
         file_put_contents($outputPortPath . '\\' . $usecaseName . 'OutputData.php', $outputData->getOutputDataSourceFile()->getContents());
         file_put_contents($presenterPath . '\\' . $usecaseName . 'Presenter.php', $outputData->getPresenterSourceFile()->getContents());
 
-        echo $outputData->getControllerSourceFile()->getContents();
-        echo $outputData->getInputPortSourceFile()->getContents();
-        echo $outputData->getInteractorSourceFile()->getContents();
-        echo $outputData->getInputDataSourceFile()->getContents();
-        echo $outputData->getOutputPortSourceFile()->getContents();
-        echo $outputData->getOutputDataSourceFile()->getContents();
-        echo $outputData->getPresenterSourceFile()->getContents();
+//        echo $outputData->getControllerSourceFile()->getContents();
+//        echo $outputData->getInputPortSourceFile()->getContents();
+//        echo $outputData->getInteractorSourceFile()->getContents();
+//        echo $outputData->getInputDataSourceFile()->getContents();
+//        echo $outputData->getOutputPortSourceFile()->getContents();
+//        echo $outputData->getOutputDataSourceFile()->getContents();
+//        echo $outputData->getPresenterSourceFile()->getContents();
     }
 }

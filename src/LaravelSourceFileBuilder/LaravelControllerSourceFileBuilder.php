@@ -22,7 +22,7 @@ class LaravelControllerSourceFileBuilder implements ControllerSourceFileBuilderI
 
     function build(UseCaseSchema $schema, string $namespace, string $inputPortName, string $inputPortNamespace): SourceFileData
     {
-        $name = $schema->fullName() . 'Controller';
+        $name = $schema->categoryName . 'Controller';
 
         $clazz = new ClassMeta($name, $namespace);
         $clazz->setupClass()

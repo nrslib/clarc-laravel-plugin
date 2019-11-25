@@ -5,7 +5,6 @@ namespace nrslib\ClarcLaravelPlugin\UseCases\ClarcObject\Create;
 
 
 use nrslib\Clarc\UseCases\Commons\Ds\TypeAndName;
-use nrslib\Clarc\UseCases\UseCase\Create\UseCaseCreateNamespaceData;
 
 class ClarcObjectCreateInputData
 {
@@ -43,5 +42,4 @@ class ClarcObjectCreateInputData
         $this->inputDataFields = $inputDataFields;
         $this->outputDataFields = $outputDataFields;
     }
-
 }
