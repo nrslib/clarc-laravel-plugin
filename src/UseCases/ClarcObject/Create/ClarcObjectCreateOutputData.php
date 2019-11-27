@@ -44,6 +44,11 @@ class ClarcObjectCreateOutputData
     private $presenterSourceFile;
 
     /**
+     * @var SourceFileData
+     */
+    private $viewModelSourceFile;
+
+    /**
      * UseCaseCreateOutputData constructor.
      * @param SourceFileData $controllerSourceFile
      * @param SourceFileData $inputPortSourceFile
@@ -53,16 +58,7 @@ class ClarcObjectCreateOutputData
      * @param SourceFileData $outputDataSourceFile
      * @param SourceFileData $presenterSourceFile
      */
-    public function __construct(
-        SourceFileData $controllerSourceFile,
-        SourceFileData $inputPortSourceFile,
-        SourceFileData $interactorDataSourceFile,
-        SourceFileData $inputDataSourceFile,
-        SourceFileData $outputPortSourceFile,
-        SourceFileData $outputDataSourceFile,
-        SourceFileData $presenterSourceFile
-    )
-    {
+    public function __construct(SourceFileData $controllerSourceFile, SourceFileData $inputPortSourceFile, SourceFileData $interactorDataSourceFile, SourceFileData $inputDataSourceFile, SourceFileData $outputPortSourceFile, SourceFileData $outputDataSourceFile, SourceFileData $presenterSourceFile, SourceFileData $viewModelSourceFile) {
         $this->controllerSourceFile = $controllerSourceFile;
         $this->inputPortSourceFile = $inputPortSourceFile;
         $this->interactorSourceFile = $interactorDataSourceFile;
@@ -70,6 +66,7 @@ class ClarcObjectCreateOutputData
         $this->outputPortSourceFile = $outputPortSourceFile;
         $this->outputDataSourceFile = $outputDataSourceFile;
         $this->presenterSourceFile = $presenterSourceFile;
+        $this->viewModelSourceFile = $viewModelSourceFile;
     }
 
     /**
@@ -126,5 +123,13 @@ class ClarcObjectCreateOutputData
     public function getPresenterSourceFile(): SourceFileData
     {
         return $this->presenterSourceFile;
+    }
+
+    /**
+     * @return SourceFileData
+     */
+    public function getViewModelSourceFile(): SourceFileData
+    {
+        return $this->viewModelSourceFile;
     }
 }

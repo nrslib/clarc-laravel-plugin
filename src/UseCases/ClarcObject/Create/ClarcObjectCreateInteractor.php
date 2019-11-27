@@ -47,13 +47,14 @@ class ClarcObjectCreateInteractor implements ClarcObjectCreateInputPort
 
     public function handle(ClarcObjectCreateInputData $inputData)
     {
-        $inputPortNameSpace = LaravelConfig::INPUT_PORT_NAMESPACE . $inputData->controllerName;
+        $inputPortNameSpace = LaravelConfig::NAMESPACE_INPUT_PORT . '\\' . $inputData->controllerName . '\\' . $inputData->actionName;
         $namespaces = new UseCaseCreateNamespaceData(
-            LaravelConfig::CONTROLLER_NAMESPACE . $inputData->controllerName,
+            LaravelConfig::NAMESPACE_CONTROLLER,
             $inputPortNameSpace,
-            LaravelConfig::INTERACTOR_NAMESPACE . $inputData->controllerName,
-            LaravelConfig::OUTPUT_PORT_NAMESPACE . $inputData->controllerName,
-            LaravelConfig::PRESENTER_NAMESPACE . $inputData->controllerName
+            LaravelConfig::NAMESPACE_INTERACTOR . '\\' . $inputData->controllerName,
+            LaravelConfig::NAMESPACE_OUTPUT_PORT . '\\' . $inputData->controllerName . '\\' . $inputData->actionName,
+            LaravelConfig::NAMESPACE_PRESENTER . '\\' . $inputData->controllerName,
+            LaravelConfig::NAMESPACE_VIEWMODEL . '\\' . $inputData->controllerName . '\\' . $inputData->actionName
         );
         $usecaseCreateOutputData = $this->executeClarcCore($inputData, $namespaces);
 
@@ -64,7 +65,8 @@ class ClarcObjectCreateInteractor implements ClarcObjectCreateInputPort
             $usecaseCreateOutputData->getInputDataSourceFile(),
             $usecaseCreateOutputData->getOutputPortSourceFile(),
             $usecaseCreateOutputData->getOutputDataSourceFile(),
-            $usecaseCreateOutputData->getPresenterSourceFile()
+            $usecaseCreateOutputData->getPresenterSourceFile(),
+            $usecaseCreateOutputData->getViewModelSourceFile()
         );
         $this->outputPort->output($outputData);
     }
@@ -81,7 +83,7 @@ class ClarcObjectCreateInteractor implements ClarcObjectCreateInputPort
             $usecaseCreateDataCollector,
             $this->classRenderer,
             $this->interfaceRenderer,
-            new LaravelControllerSourceFileBuilder($this->classRenderer),
+            new LaravelControllerSourceFileBuilder($this->classRenderer, $inputData->currentControllerContent),
             new LaravelPresenterSourceFileBuilder($this->classRenderer));
         $usecaseInputData = new UseCaseCreateInputData(
             $namespaces,

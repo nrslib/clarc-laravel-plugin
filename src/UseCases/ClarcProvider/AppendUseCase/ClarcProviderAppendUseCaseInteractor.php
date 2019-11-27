@@ -42,7 +42,11 @@ class ClarcProviderAppendUseCaseInteractor implements ClarcProviderAppendUseCase
                 $inputPortBindCode = $this->makeBindCode($inputData->inputPortName, $inputData->interactorName);
                 $outputPortBindCode = $this->makeBindCode($inputData->outputPortName, $inputData->presenterName);
                 $script = new UseCaseSettingScript($comment, $inputPortBindCode, $outputPortBindCode);
-                array_push($scripts, $script);
+
+                if (!$this->exists($scripts, $script)) {
+                    array_push($scripts, $script);
+                }
+
                 usort($scripts, function ($l, $r) {
                     return $l->getKey() < $r->getKey() ? -1 : 1;
                 });
@@ -72,6 +76,7 @@ class ClarcProviderAppendUseCaseInteractor implements ClarcProviderAppendUseCase
     /**
      * @param array $lines
      * @return AppendUseCaseScriptInterface[]
+     * @throws \Exception
      */
     private function divideScripts(array $lines): array
     {
@@ -95,6 +100,12 @@ class ClarcProviderAppendUseCaseInteractor implements ClarcProviderAppendUseCase
         }
 
         return $results;
+    }
+
+    private function exists(array $scripts, UseCaseSettingScript $script): bool
+    {
+        $duplicates = array_filter($scripts, function ($s) use ($script) { return $s->getKey() === $script->getKey(); });
+        return !empty($duplicates);
     }
 
     private function startsWith(string $target, $word): bool

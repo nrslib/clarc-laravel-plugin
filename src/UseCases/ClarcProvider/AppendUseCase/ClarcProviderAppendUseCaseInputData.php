@@ -11,11 +11,11 @@ namespace nrslib\ClarcLaravelPlugin\UseCases\ClarcProvider\AppendUseCase;
 class ClarcProviderAppendUseCaseInputData
 {
     /**
-     * @var
+     * @var string
      */
     public $clarcProviderCode;
     /**
-     * @var
+     * @var string
      */
     public $clarcDebugProviderCode;
     /**
@@ -41,8 +41,8 @@ class ClarcProviderAppendUseCaseInputData
 
     /**
      * ClarcProviderAppendUseCaseInputData constructor.
-     * @param $clarcProviderCode
-     * @param $clarcDebugProviderCode
+     * @param string $clarcProviderCode
+     * @param string $clarcDebugProviderCode
      * @param string $identifer
      * @param string $inputPortName
      * @param string $interactorName
@@ -50,8 +50,8 @@ class ClarcProviderAppendUseCaseInputData
      * @param string $presenterName
      */
     public function __construct(
-        $clarcProviderCode,
-        $clarcDebugProviderCode,
+        string $clarcProviderCode,
+        string $clarcDebugProviderCode,
         string $identifer,
         string $inputPortName,
         string $interactorName,

@@ -16,8 +16,13 @@ class ClarcProvider extends ServiceProvider
     public function register()
     {
         $this->app->singleton('command.Clarc.make', function ($app) {
-            return $app['nrslib\ClarcLaravelPlugin\Commands\ClarcMakeCommand'];
+            return $app['nrslib\ClarcLaravelPlugin\Commands\Make\ClarcMakeCommand'];
         });
         $this->commands('command.Clarc.make');
+
+        $this->app->singleton('command.Clarc.initialize', function ($app) {
+            return $app['nrslib\ClarcLaravelPlugin\Commands\Initialize\ClarcInitializeCommand'];
+        });
+        $this->commands('command.Clarc.initialize');
     }
 }

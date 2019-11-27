@@ -14,6 +14,11 @@ class ClarcObjectCreateInputData
     public $controllerName;
 
     /**
+     * @var string|null
+     */
+    public $currentControllerContent;
+
+    /**
      * @var string
      */
     public $actionName;
@@ -31,13 +36,15 @@ class ClarcObjectCreateInputData
     /**
      * ClarcObjectCreateInputData constructor.
      * @param string $controllerName
+     * @param string|null $currentControllerContent
      * @param string $actionName
      * @param TypeAndName[] $inputDataFields
      * @param TypeAndName[] $outputDataFields
      */
-    public function __construct(string $controllerName, string $actionName, array $inputDataFields, array $outputDataFields)
+    public function __construct(string $controllerName, ?string $currentControllerContent, string $actionName, array $inputDataFields, array $outputDataFields)
     {
         $this->controllerName = $controllerName;
+        $this->currentControllerContent = $currentControllerContent;
         $this->actionName = $actionName;
         $this->inputDataFields = $inputDataFields;
         $this->outputDataFields = $outputDataFields;

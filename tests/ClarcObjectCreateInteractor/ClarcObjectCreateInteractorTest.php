@@ -29,7 +29,12 @@ class ClarcObjectCreateInteractorTest extends \PHPUnit\Framework\TestCase
         $outputDataFields = [ new TypeAndName('string', 'aaa') ];
         $controllerName = 'Test';
         $actionName = 'MyAction';
-        $inputData = new ClarcObjectCreateInputData($controllerName, $actionName, $inputDataFields, $outputDataFields);
+        $inputData = new ClarcObjectCreateInputData(
+            $controllerName,
+            $this->controllerContents(),
+            $actionName,
+            $inputDataFields,
+            $outputDataFields);
         $interactor->handle($inputData);
         $outputData = $presenter->getOutputData();
 
@@ -76,5 +81,33 @@ class ClarcObjectCreateInteractorTest extends \PHPUnit\Framework\TestCase
 //        echo $outputData->getOutputPortSourceFile()->getContents();
 //        echo $outputData->getOutputDataSourceFile()->getContents();
 //        echo $outputData->getPresenterSourceFile()->getContents();
+    }
+
+    private function controllerContents()
+    {
+        return
+'<?php
+
+namespace App\Http\Controllers\Test;
+
+
+use Illuminate\Routing\Controller as BaseController;
+use packages\InputPorts\Test\TestMyAction2InputPortInterface;
+
+/**
+ * Class TestController
+ * @package App\Http\Controllers\Test
+ */
+class TestController extends BaseController
+{
+    /**
+     * @param TestMyAction2InputPortInterface $inputPort
+     */
+    private function myAction2(TestMyAction2InputPortInterface $inputPort)
+    {
+        // TODO: Implement myAction2() method.
+    }
+}
+';
     }
 }

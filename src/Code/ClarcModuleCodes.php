@@ -1,7 +1,7 @@
 <?php
 
 
-namespace nrslib\ClarcLaravelPlugin\Commands\Basic;
+namespace nrslib\ClarcLaravelPlugin\Code;
 
 
 class ClarcModuleCodes

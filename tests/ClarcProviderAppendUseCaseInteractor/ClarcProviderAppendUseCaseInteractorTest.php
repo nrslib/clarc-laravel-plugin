@@ -24,10 +24,10 @@ class ClarcProviderAppendUseCaseInteractorTest extends TestCase
             $currentClarcProviderCode,
             '',
             'TestMyAction',
-            '\\' . LaravelConfig::INPUT_PORT_NAMESPACE . 'Test\\TestMyActionInputPortInterface',
-            '\\' . LaravelConfig::INTERACTOR_NAMESPACE . 'Test\\TestMyActionInteractor',
-            '\\' . LaravelConfig::OUTPUT_PORT_NAMESPACE . 'Test\\TestMyActionOutputPortInterface',
-            '\\' . LaravelConfig::PRESENTER_NAMESPACE . 'Test\\TestMyActionPresenter');
+            '\\' . LaravelConfig::NAMESPACE_INPUT_PORT . '\\' . 'Test\\TestMyActionInputPortInterface',
+            '\\' . LaravelConfig::NAMESPACE_INTERACTOR . '\\' . 'Test\\TestMyActionInteractor',
+            '\\' . LaravelConfig::NAMESPACE_OUTPUT_PORT . '\\' . 'Test\\TestMyActionOutputPortInterface',
+            '\\' . LaravelConfig::NAMESPACE_PRESENTER . '\\' . 'Test\\TestMyActionPresenter');
         $interactor->handle($inputData);
         $outputdata = $presenter->outputData;
 
