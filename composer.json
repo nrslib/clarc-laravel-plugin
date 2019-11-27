@@ -1,17 +1,8 @@
 {
     "name": "nrslib/clarc-laravel-plugin",
-    "repositories": [
-        {
-            "type": "path",
-            "url": "../clarc/src",
-            "options": {
-                "symlink": true
-            }
-        }
-    ],
     "require": {
         "php": "^7.2",
-        "nrslib/cfg": "dev-master",
+        "nrslib/cfg": "0.*",
         "nrslib/clarc-php-core": "dev-master",
         "illuminate/support": "^6.2",
         "laravel/framework": "^6.2"
